@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ValidationLibrary" />
+        <module name="sss" />
+        <module name="MyImplementation" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MyImplementation" target="13" />
+      <module name="psp-1.3-uzduotis" target="11" />
+      <module name="sss" target="13" />
+      <module name="user-web" target="11" />
+      <module name="ValidationLibrary" target="13" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MyImplementation" options="-parameters" />
+      <module name="ValidationLibrary" options="-parameters" />
+      <module name="sss" options="-parameters" />
+      <module name="user-web" options="-parameters" />
+    </option>
+  </component>
+</project>
