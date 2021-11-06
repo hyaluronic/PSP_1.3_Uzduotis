@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyImplementation/MyImplementation.iml" filepath="$PROJECT_DIR$/MyImplementation/MyImplementation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ValidationLibrary/ValidationLibrary.iml" filepath="$PROJECT_DIR$/ValidationLibrary/ValidationLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-web.iml" filepath="$PROJECT_DIR$/user-web.iml" />
     </modules>
   </component>
