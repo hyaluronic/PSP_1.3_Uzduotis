@@ -26,27 +26,25 @@ public class UserRestController {
         return service.findAll();
     }
 
-
     @GetMapping("/users/{userId}")
     public User getUserById(@PathVariable int userId) {
         return service.findById(userId);
     }
 
     @PostMapping("/users")
-    public User addUser(@RequestBody User user) throws ValidationException {
+    public User registerUser(@RequestBody User user) throws ValidationException {
         validateUser(user);
         return service.add(user);
     }
 
     @PostMapping("/users/{userId}")
     public User updateUserById(@PathVariable int userId, @RequestBody User userInfo) throws ValidationException {
-        if(!service.existsById(userId)){
+        if (!service.existsById(userId)) {
             throw new ValidationException(String.format("User with id '%s' does not exist", userId));
         }
         validateUser(userInfo);
         userInfo.setId(userId);
-        service.update(userInfo);
-        return userInfo;
+        return service.update(userInfo);
     }
 
     @DeleteMapping("/users/{userId}")
@@ -56,7 +54,7 @@ public class UserRestController {
 
     @PostMapping("/phoneValidatorCountryPrefix")
     public void addPhoneValidatorCountryPrefix(@RequestBody CountryPrefix countryPrefix, @RequestParam String countryCode) throws ValidationException {
-        if(phoneValidator.addCountryPrefix(countryCode, countryPrefix.prefix, countryPrefix.length, countryPrefix.trunk)){
+        if (!phoneValidator.addCountryPrefix(countryCode, countryPrefix.prefix, countryPrefix.length, countryPrefix.trunk)) {
             throw new ValidationException("Valdiation CountryPrefix is not valid");
         }
     }
@@ -65,15 +63,14 @@ public class UserRestController {
         if (user == null) {
             throw new ValidationException("User cannot be null");
         }
-        if(!emailValidator.validateEmail(user.getEmail())){
+        if (!emailValidator.validateEmail(user.getEmail())) {
             throw new ValidationException("User email is not valid");
         }
-        if(!phoneValidator.validatePhoneNumber(user.getPhoneNumber())){
+        if (!phoneValidator.validatePhoneNumber(user.getPhoneNumber())) {
             throw new ValidationException("User phone number is not valid");
         }
-        if(!passwordChecker.validatePassword(user.getPassword())){
+        if (!passwordChecker.validatePassword(user.getPassword())) {
             throw new ValidationException("User phone number is not valid");
         }
     }
-
 }
