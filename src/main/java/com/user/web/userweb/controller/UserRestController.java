@@ -55,7 +55,22 @@ public class UserRestController {
     @PostMapping("/phoneValidatorCountryPrefix")
     public void addPhoneValidatorCountryPrefix(@RequestBody CountryPrefix countryPrefix, @RequestParam String countryCode) throws ValidationException {
         if (!phoneValidator.addCountryPrefix(countryCode, countryPrefix.prefix, countryPrefix.length, countryPrefix.trunk)) {
-            throw new ValidationException("Valdiation CountryPrefix is not valid");
+            throw new ValidationException("Validation CountryPrefix is not valid");
+        }
+    }
+
+    @PostMapping("/passwordChecker")
+    public void setCustomPasswordCheckerRules(@RequestParam(value = "specialSymbols", required = false) String specialSymbols,
+                                              @RequestParam(value = "minLength", required = false) Integer minLength,
+                                              @RequestParam(value = "needsUppercase", required = false) Boolean needsUppercase) {
+        if (specialSymbols != null) {
+            passwordChecker.specialSymbols(specialSymbols);
+        }
+        if (minLength != null) {
+            passwordChecker.minLength(minLength);
+        }
+        if (Boolean.TRUE.equals(needsUppercase)) {
+            passwordChecker.needsUppercase();
         }
     }
 
@@ -64,13 +79,13 @@ public class UserRestController {
             throw new ValidationException("User cannot be null");
         }
         if (!emailValidator.validateEmail(user.getEmail())) {
-            throw new ValidationException("User email is not valid");
+            throw new ValidationException("Users email is not valid");
         }
         if (!phoneValidator.validatePhoneNumber(user.getPhoneNumber())) {
-            throw new ValidationException("User phone number is not valid");
+            throw new ValidationException("Users phone number is not valid");
         }
         if (!passwordChecker.validatePassword(user.getPassword())) {
-            throw new ValidationException("User phone number is not valid");
+            throw new ValidationException("Users password is not valid");
         }
     }
 }
